@@ -25,6 +25,7 @@ import android.util.Log;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -130,6 +131,13 @@ public class XParam {
         if (BuildConfig.DEBUG)
             Log.i(TAG, "Get " + this.getPackageName() + ":" + this.getUid() + " result=" + ex.getMessage());
         return ex;
+    }
+
+    @SuppressWarnings("unused")
+    public int getStackHash(){
+        Exception exception = new Exception();
+        StackTraceElement[] elements = exception.getStackTrace();
+        return Arrays.hashCode(elements);
     }
 
     @SuppressWarnings("unused")
